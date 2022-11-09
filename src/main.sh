@@ -77,8 +77,6 @@ yes_text="Yes, Install $keyboard firmware!"
 confirm=$(gum choose --cursor.foreground="214" --item.foreground="555" "$yes_text" "No, exit now.")
 if [ "$confirm" == "$yes_text" ]; then
 	$current_dir/src/flash.sh $keyboard &
-	sleep -s 0.2
-	clear
 	gum spin --spinner minidot --title "Building Firmware..." -- grep -q 'Bootloader not found. Trying again in 5s.' <(tail -f ./tmp) \
 	&& gum style --foreground 120 --align left --width 75 --underline "Now we need to flash the keyboard's firmware:" \
 	&& gum style --foreground 120 --align left --width 75 --padding "2 4" --bold "1) Unplug Keyboard" "" "2) Hold the Esc key" "" "3) Continue to hold Esc and plug in the keyboard" \
